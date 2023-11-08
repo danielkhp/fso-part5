@@ -55,6 +55,16 @@ const App = () => {
     setBlogs(blogs.concat(createdBlog))
   }
 
+  // const updateBlog = async (id, updateObj) => {
+  //   const updatedBlog = await blogService.like(id, updateObj)
+
+  //   setBlogs(blogs.map((blog) => (
+  //     blog.id === updatedBlog.id
+  //       ? updatedBlog
+  //       : blog
+  //   )))
+  // }
+
   if (fetchingUser) return null
 
   if (user === null) return (
