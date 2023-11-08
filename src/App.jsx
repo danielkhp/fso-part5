@@ -67,6 +67,12 @@ const App = () => {
   //   )))
   // }
 
+  const deleteBlog = async (id) => {
+    await blogService.remove(id)
+
+    setBlogs(blogs.filter((blog) => blog.id !== id))
+  }
+
   if (fetchingUser) return null
 
   if (user === null) return (
@@ -89,7 +95,12 @@ const App = () => {
       </Togglable>
 
       {sortedBlogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
+        <Blog
+          key={blog.id}
+          blog={blog}
+          user={user}
+          deleteBlog={deleteBlog}
+        />
       )}
     </div>
   )
