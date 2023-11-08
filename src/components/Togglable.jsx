@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Togglable = ({ buttonText, children }) => {
+const Togglable = ({ showText, hideText, children }) => {
   const [visible, setVisible] = useState(false)
 
   const toggleVis = () => setVisible(!visible)
@@ -12,7 +12,7 @@ const Togglable = ({ buttonText, children }) => {
           type='button'
           onClick={toggleVis}
         >
-          {buttonText}
+          {showText}
         </button>
       </div>
     )
@@ -25,7 +25,7 @@ const Togglable = ({ buttonText, children }) => {
           type='button'
           onClick={toggleVis}
         >
-          cancel
+          {hideText}
         </button>
     </div>
   )
