@@ -11,6 +11,8 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [blogs, setBlogs] = useState([])
 
+  const sortedBlogs = [...blogs].sort((a, b) => b.likes - a.likes)
+
   useEffect(() => {
     const storedUserJSON = window.localStorage.getItem('blogAppUser')
 
@@ -86,7 +88,7 @@ const App = () => {
         <BlogForm createBlog={createBlog} />
       </Togglable>
 
-      {blogs.map(blog =>
+      {sortedBlogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
     </div>

@@ -23,7 +23,7 @@ const create = async (newBlog) => {
 }
 
 const like = async (id, updateObj) => {
-  const response = await axios.put(`${baseUrl}/${id}`, updateObj)
+  const response = await axios.patch(`${baseUrl}/${id}`, updateObj)
 
   return response.data
 }
