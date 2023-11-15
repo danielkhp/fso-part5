@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import LoginForm from './components/LoginForm'
 import BlogForm from './components/BlogForm'
@@ -10,6 +10,7 @@ const App = () => {
   const [fetchingUser, setFetchingUser] = useState(true)
   const [user, setUser] = useState(null)
   const [blogs, setBlogs] = useState([])
+  const blogFormRef = useRef()
 
   const sortedBlogs = [...blogs].sort((a, b) => b.likes - a.likes)
 
@@ -54,6 +55,8 @@ const App = () => {
   const createBlog = async (newBlog) => {
     const createdBlog = await blogService.create(newBlog)
 
+    blogFormRef.current.toggleVis()
+
     setBlogs(blogs.concat(createdBlog))
   }
 
@@ -90,7 +93,11 @@ const App = () => {
 
       <h2>add blog</h2>
 
-      <Togglable showText='new blog' hideText='cancel' >
+      <Togglable
+        showText='new blog'
+        hideText='cancel'
+        ref={blogFormRef}
+      >
         <BlogForm createBlog={createBlog} />
       </Togglable>
 
